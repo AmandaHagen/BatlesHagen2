@@ -12,3 +12,4 @@ C:\Users\Usuario\source\repos\BatlesHagen\BatlesHagen2\obj\Debug\net8.0\refint\B
 C:\Users\Usuario\source\repos\BatlesHagen\BatlesHagen2\obj\Debug\net8.0\BatlesHagen2.pdb
 C:\Users\Usuario\source\repos\BatlesHagen\BatlesHagen2\obj\Debug\net8.0\BatlesHagen2.genruntimeconfig.cache
 C:\Users\Usuario\source\repos\BatlesHagen\BatlesHagen2\obj\Debug\net8.0\ref\BatlesHagen2.dll
+C:\Users\Usuario\source\repos\BatlesHagen\BatlesHagen2\obj\Debug\net8.0\BatlesHagen2.sourcelink.json

@@ -1,6 +1,6 @@
-﻿namespace BatlesHagen2.Personagens; 
+﻿namespace BatlesHagen2.Personagens;
 
-class Personagem
+abstract class Personagem : IAtacavel
 {
     public Personagem(string nome, int vida, int ataque, int defesa)
     {
@@ -11,10 +11,10 @@ class Personagem
     }
 
     public string Nome { get; }
-    public int Vida { get;  }
+    public int Vida { get; protected set; }
     public int Ataque { get;  }
-    public int Defesa { get; }
-    public bool EstaVivo => Vida > 0;
+    public int Defesa { get; protected set; }
+    public bool EstaVivo => Vida >= 0;
 
     public void ExibirFichaTecnica()
     {
@@ -26,18 +26,11 @@ class Personagem
 
     public virtual void ExibirStatus()
     {
-        Console.WriteLine($"{Nome} - Vida: {Vida}");
+        Console.WriteLine($"{Nome} - Vida: {Vida} - Defesa{Defesa}.");
     }
     // Método de ataque simples
-    public virtual void Atacar(Personagem alvo)
-    {
-        int dano = Ataque - alvo.Defesa;
-        if (dano < 0) dano = 0; 
-
-        //alvo.vida -= dano;
-        Console.WriteLine($"{Nome} atacou {alvo.Nome} e causou {dano} de dano!");
-    }
-
+    public abstract void AtaqueNormal(Personagem alvo);
+    public abstract void AtaqueEspecial(Personagem alvo);
 
 
 }

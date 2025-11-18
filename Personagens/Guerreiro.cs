@@ -1,13 +1,10 @@
 ﻿namespace BatlesHagen2.Personagens;
 
-
-internal class Mago : Personagem
+internal class Guerreiro : Personagem
 {
-    public Mago() : base("Merlin", vida: 100, ataque: 10, defesa: 10)
+    public Guerreiro() : base("Eric", vida: 100, ataque: 15, defesa: 5)
     {
-
     }
-   
 
     public override void AtaqueNormal(Personagem alvo)
     {
@@ -34,11 +31,5 @@ internal class Mago : Personagem
 
     }
 
-
-
-
-
-
-
-
 }
+

@@ -29,8 +29,21 @@ abstract class Personagem : IAtacavel
         Console.WriteLine($"{Nome} - Vida: {Vida} - Defesa{Defesa}.");
     }
     // Método de ataque simples
-    public abstract void AtaqueNormal(Personagem alvo);
-    public abstract void AtaqueEspecial(Personagem alvo);
+    public virtual void AtaqueNormal(Personagem alvo)
+    {
+        int dano = Ataque - alvo.Defesa;
+        if (dano < 0) dano = 0;
+    }
+    public virtual void AtaqueEspecial(Personagem alvo)
+    {
+        int dano = Ataque - alvo.Defesa;
+        if (dano < 0) dano = 0;
+    }
 
 
+    public virtual ReceberDano(int dano)
+    {
+        Vida -= dano;
+        if (Vida < 0) Vida = 0;
+    }
 }

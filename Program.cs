@@ -9,22 +9,37 @@ class Program
     static void Main(string[] args)
     {
         string mensagemDeBoasVindas = "Bem Vindo ao Batles Hagen!";
-
         ExbirLogo();
         ExibirTitulo();
         ExibirMenu();
 
+        Personagem jogador1 = EscolherPersonagem("Jogador 1");
+        Personagem jogador2 = EscolherPersonagem("Jogador 2");
+
+         Console.WriteLine($"\nBATALHA INICIADA: {jogador1.Nome} VS {jogador2.Nome}!\n");
+
+            // Loop de batalha
+            while (jogador1.EstaVivo && jogador2.EstaVivo)
+            {
+                Turno(jogador1, jogador2);
+                if (!jogador2.EstaVivo) break;
+                Turno(jogador2, jogador1);
+            }
+
+            Console.WriteLine("\n=== FIM DE JOGO ===");
+            if (jogador1.EstaVivo)
+                Console.WriteLine($"{jogador1.Nome} venceu!");
+            else
+                Console.WriteLine($"{jogador2.Nome} venceu!");
 
 
     }
     public static void ExbirLogo()
     {
-
         Console.WriteLine(@" 
 
     █▄▄ ▄▀█ ▀█▀ █   █▀▀ █▀   █ █ ▄▀█ █▀▀ █▀▀ █▄ █
     █▄█ █▀█  █   █▄▄ ██▄ ▄█   █▀█ █▀█ █▄█ ██▄ █ ▀█");
-
 
     }
 
@@ -69,47 +84,39 @@ class Program
 
     }
 
-
-    public static void EscolhaDosPlayers()
+    static Personagem EscolherPersonagem(string jogador)
     {
-        string jogador1 = "Player 1";
-        string jogador2 = "Player2";
+        Console.WriteLine($"\n{jogador}: escolha seu personagem:\n");
+        Console.WriteLine("Digite 1 - Guerreiro");
+        Console.WriteLine("Digite 2 - Mago");
+        Console.WriteLine("Digite 3 - Arqueiro");
+        Console.Write($"Opção: ");
+        string opcao = Console.ReadLine();
 
-        Console.WriteLine("");
-        Console.WriteLine($"Digite 1 para: .");
-        Console.WriteLine($"Digite 2 para: .");
-        Console.WriteLine($"Digite 3 para: ");
-        Console.WriteLine("2. Sair");
-
-        Console.Write("\nDigite a sua opção: ");
-        string entrada = Console.ReadLine()!;
-
-        if (int.TryParse(entrada, out int escolha))
+        return opcao switch
         {
-            switch (escolha)
-            {
-                case 1:
-                    Console.WriteLine($"Você escolheu: Guerreiro");
-                    break;
-                case 2:
-                    Console.WriteLine($"Você escolheu: Mago");
-                    break;
-                case 3:
-                    Console.WriteLine($"Você escolheu: Arqueiro");
-                    break;
-                default:
-                    Console.WriteLine("Opção inválida");
-                    break;
-            }
-        }
-        else
-        {
-            Console.WriteLine("Opção inválida");
-        }
-        Console.Clear();
-        ExbirLogo();
-        Console.WriteLine("\nRetornando ao menu principal...\n");
+            "1" => new Guerreiro(),
+            "2" => new Mago(),
+            "3" => new Arqueiro(),
+        };
     }
 
+    static void Turno(Personagem atacante, Personagem defensor)
+    {
+        Console.WriteLine($"\n--- Turno de {atacante.Nome} ---");
+        atacante.ExibirStatus();
+        defensor.ExibirStatus();
+
+        Console.WriteLine("Escolha sua ação:");
+        Console.WriteLine("1 - Atacar");
+        Console.WriteLine("2 - Ataque Especial");
+        Console.Write("Opção: ");
+        string acao = Console.ReadLine();
+
+        if (acao == "1")
+            atacante.AtaqueNormal(defensor);
+        else
+            atacante.AtaqueEspecial(defensor);
+    }
 
 }

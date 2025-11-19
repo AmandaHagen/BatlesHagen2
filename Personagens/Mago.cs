@@ -10,24 +10,20 @@ internal class Mago : Personagem
    
 
     public override void AtaqueNormal(Personagem alvo)
-    {
+    {       
 
-        int dano = Ataque - alvo.Defesa;
-        if (dano < 0) dano = 0;
-
-        //alvo.vida -= dano;
+        int dano = Math.Max(Ataque - alvo.Defesa, 0);
+        alvo.ReceberDano(dano);
         Console.WriteLine($"{Nome} atacou com seu cajado {alvo.Nome} e causou {dano} de dano em seu oponente.");
 
     }
     public override void AtaqueEspecial(Personagem alvo)
-    {
-        int dano = (Ataque + 7) - alvo.Defesa;
-            if (dano < 0) dano = 0;
-            alvo.ReceberDano(dano);
-            Defesa -= 3;
+    {     
+        int dano = (int)(Ataque * 1.5) - alvo.Defesa;
+        alvo.ReceberDano(dano);
+        Vida -= 10; // custo de mana/vitalidade
+        Console.WriteLine($"{Nome} Conjurou um monstro e atacou {alvo.Nome} e causando {dano} de dano no seu oponente. Ao conjurar, perdeu pontos da sua defesa.");
 
-        //alvo.vida -= dano;
-        Console.WriteLine($"{Nome} Conjurou um monstro e atacou {alvo.Nome} e causando{dano} de dano no seu oponente. Ao conjurar, perdeu pontos da sua defesa.");
 
     }
     public override void ReceberDano(int dano)

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BatlesHagen2")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+268b72cf237b73f256e0493d9e255ca9bc51c70a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+683f9b122dc6e44b90c30361c61828a3488c6c70")]
 [assembly: System.Reflection.AssemblyProductAttribute("BatlesHagen2")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BatlesHagen2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

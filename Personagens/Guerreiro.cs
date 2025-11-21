@@ -4,32 +4,44 @@ internal class Guerreiro : Personagem
 {
     public Guerreiro() : base("Eric", vida: 100, ataque: 15, defesa: 5)
     {
+
     }
+
 
     public override void AtaqueNormal(Personagem alvo)
     {
-
-        int dano = Ataque - alvo.Defesa;
-        if (dano < 0) dano = 0;
-
-        //alvo.vida -= dano;
-        Console.WriteLine($"{Nome} atacou com seu cajado {alvo.Nome} e causou {dano} de dano em seu oponente.");
+        
+        int dano = Math.Max(Ataque - alvo.Defesa, 0);
+        alvo.ReceberDano(dano);
+        Console.WriteLine($"\n{Nome} desferiu um ataque com sua espada em {alvo.Nome}");
+        Console.WriteLine($"Causou {dano} de dano em seu oponente.");
+        Console.WriteLine($"Vida atual: {Vida} | Ataque atual: {Ataque} | Defesa atual: {Defesa}");
 
     }
     public override void AtaqueEspecial(Personagem alvo)
     {
+        int dano = Math.Max((int)(Ataque * 1.2) - alvo.Defesa, 0);
+        alvo.ReceberDano(dano);
+        Ataque = Math.Max(Ataque - 1, 0);
 
-        int dano = Ataque - alvo.Defesa;
-        if (dano < 0) dano = 0;
 
-        //alvo.vida -= dano;
-        Console.WriteLine($"{Nome} Conjurou um monstro e atacou {alvo.Nome} e causando{dano} de dano no seu oponente. Ao conjurar, perdeu pontos da sua defesa.");
-
+        Console.WriteLine($"\n{Nome} usou o poder da espada do trovão em {alvo.Nome} e causou {dano} de dano.");
+        Console.WriteLine($"{Nome}, perdeu {Ataque} ponto de ataque ao utilizar o especial.");
+        Console.WriteLine($"Vida atual: {Vida} | Ataque atual: {Ataque} | Defesa atual: {Defesa}");
     }
-    public void GetDano(int dano)
+
+    public override void ReceberDano(int dano)
     {
+        Vida = Math.Max(Vida - dano, 0);
 
+        Console.WriteLine($"{Nome} recebeu {dano} de dano. Vida atual: {Vida}");
     }
 
+    public override void ExibirStatus()
+    {
+        Console.WriteLine($"Nome: {Nome}");
+        Console.WriteLine($"Vida: {Vida}");
+        Console.WriteLine($"Ataque: {Ataque}");
+        Console.WriteLine($"Defesa: {Defesa}");
+    }
 }
-

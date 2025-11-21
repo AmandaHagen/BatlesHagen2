@@ -11,7 +11,7 @@ class Program
         string mensagemDeBoasVindas = "Bem Vindo ao Batles Hagen!";
         ExbirLogo();
         ExibirTitulo();
-        ExibirMenu();
+        
 
         Personagem jogador1 = EscolherPersonagem("Jogador 1");
         Personagem jogador2 = EscolherPersonagem("Jogador 2");
@@ -48,50 +48,23 @@ class Program
         Console.WriteLine("=================================");
         Console.WriteLine("       BATLES HAGEN 2.0         ");
         Console.WriteLine("=================================");
-    }
-
-    public static void ExibirMenu()
-    {
-        Console.WriteLine("Escolha uma opção:");
-        Console.WriteLine("1. Iniciar Jogo");
-        Console.WriteLine("2. Sair");
-
-        Console.Write("\nDigite a sua opção: ");
-        string entrada = Console.ReadLine()!;
-      
-        if (int.TryParse(entrada, out int escolha))
-        {
-            switch (escolha)
-            {
-                case 1:
-                    Console.WriteLine("Você escolheu Iniciar !");
-                    break;
-                case 2:
-                    Console.WriteLine("Você escolheu Sair !");
-                    break;
-                default:
-                    Console.WriteLine("Opção inválida");
-                    break;
-            }
-        }
-        else
-        {
-            Console.WriteLine("Opção inválida");
-        }
+        Thread.Sleep(2000);
         Console.Clear();
-        ExbirLogo();
-        Console.WriteLine("\nRetornando ao menu principal...\n");
 
     }
 
     static Personagem EscolherPersonagem(string jogador)
     {
+        Console.Clear();
+
         Console.WriteLine($"\n{jogador}: escolha seu personagem:\n");
         Console.WriteLine("Digite 1 - Guerreiro");
         Console.WriteLine("Digite 2 - Mago");
         Console.WriteLine("Digite 3 - Arqueiro");
         Console.Write($"Opção: ");
         string opcao = Console.ReadLine();
+        Thread.Sleep(1000);
+        Console.Clear();
 
         return opcao switch
         {
@@ -99,6 +72,8 @@ class Program
             "2" => new Mago(),
             "3" => new Arqueiro(),
         };
+
+
     }
 
     static void Turno(Personagem atacante, Personagem defensor)
@@ -117,6 +92,10 @@ class Program
             atacante.AtaqueNormal(defensor);
         else
             atacante.AtaqueEspecial(defensor);
+
+        Thread.Sleep(4000);
+        Console.Clear();
     }
+
 
 }

@@ -11,6 +11,7 @@ internal class Mago : Personagem
 
         int dano = Math.Max(Ataque - alvo.Defesa, 0);
         alvo.ReceberDano(dano);
+
         Console.WriteLine($"\n{Nome} atacou com seu cajado {alvo.Nome}");
         Console.WriteLine($"Causou {dano} de dano em seu oponente.");
         Console.WriteLine($"Vida atual: {Vida} | Ataque atual: {Ataque} | Defesa atual: {Defesa}");
@@ -33,14 +34,5 @@ internal class Mago : Personagem
         Vida = Math.Max(Vida - dano, 0);
         Console.WriteLine($"{Nome} recebeu {dano} de dano. Vida atual: {Vida}");
     }
-
-    public override void ExibirStatus()
-    {
-        Console.WriteLine("===== STATUS DO Presto =====");
-        Console.WriteLine($"Nome: {Nome}");
-        Console.WriteLine($"Vida: {Vida}");
-        Console.WriteLine($"Ataque: {Ataque}");
-        Console.WriteLine($"Defesa: {Defesa}");
-        Console.WriteLine("================================");
-    }
+    public override void ExibirStatus(){}
 }

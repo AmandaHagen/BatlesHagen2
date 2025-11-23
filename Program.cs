@@ -8,7 +8,6 @@ class Program
 
     static void Main(string[] args)
     {
-        string mensagemDeBoasVindas = "Bem Vindo ao Batles Hagen!";
         ExbirLogo();
         ExibirTitulo();
         
@@ -31,26 +30,6 @@ class Program
                 Console.WriteLine($"{jogador1.Nome} venceu!");
             else
                 Console.WriteLine($"{jogador2.Nome} venceu!");
-
-
-    }
-    public static void ExbirLogo()
-    {
-        Console.WriteLine(@" 
-
-    █▄▄ ▄▀█ ▀█▀ █   █▀▀ █▀   █ █ ▄▀█ █▀▀ █▀▀ █▄ █
-    █▄█ █▀█  █   █▄▄ ██▄ ▄█   █▀█ █▀█ █▄█ ██▄ █ ▀█");
-
-    }
-
-    private static void ExibirTitulo()
-    {
-        Console.WriteLine("=================================");
-        Console.WriteLine("       BATLES HAGEN 2.0         ");
-        Console.WriteLine("=================================");
-        Thread.Sleep(2000);
-        Console.Clear();
-
     }
 
     static Personagem EscolherPersonagem(string jogador)
@@ -70,10 +49,8 @@ class Program
         {
             "1" => new Guerreiro(),
             "2" => new Mago(),
-            "3" => new Arqueiro(),
+            "3" => new Arqueiro(),            
         };
-
-
     }
 
     static void Turno(Personagem atacante, Personagem defensor)
@@ -96,6 +73,24 @@ class Program
         Thread.Sleep(4000);
         Console.Clear();
     }
+    public static void ExbirLogo()
+    {
+        Console.WriteLine(@" 
+
+    █▄▄ ▄▀█ ▀█▀ █   █▀▀ █▀   █ █ ▄▀█ █▀▀ █▀▀ █▄ █
+    █▄█ █▀█  █   █▄▄ ██▄ ▄█   █▀█ █▀█ █▄█ ██▄ █ ▀█");
+
+    }
+    private static void ExibirTitulo()
+    {
+        Console.WriteLine("=================================");
+        Console.WriteLine("       BATLES HAGEN 2.0         ");
+        Console.WriteLine("=================================");
+        Thread.Sleep(2000);
+        Console.Clear();
+
+    }
+
 
 
 }

@@ -10,8 +10,8 @@ internal class Guerreiro : Personagem
 
     public override void AtaqueNormal(Personagem alvo)
     {
-        
-        int dano = Math.Max(Ataque - alvo.Defesa, 0);
+
+    int dano = Math.Max(Ataque - alvo.Defesa, 0);
         alvo.ReceberDano(dano);
         Console.WriteLine($"\n{Nome} desferiu um ataque com sua espada em {alvo.Nome}");
         Console.WriteLine($"Causou {dano} de dano em seu oponente.");
@@ -35,8 +35,12 @@ internal class Guerreiro : Personagem
         Vida = Math.Max(Vida - dano, 0);
 
         Console.WriteLine($"{Nome} recebeu {dano} de dano. Vida atual: {Vida}");
+        //Vida -= dano;
+        //        if (Vida< 0) Vida = 0;
+        //        Console.WriteLine($"{Nome} (Mago) recebeu {dano} de dano! Vida restante: {Vida}");
     }
 
+        
     public override void ExibirStatus()
     {
         Console.WriteLine($"Nome: {Nome}");

@@ -2,55 +2,35 @@
 
 internal class Arqueiro : Personagem
 {
+    private bool flechasTripla = false;
+
     public Arqueiro() : base("Hank", vida: 100, ataque: 5, defesa: 15)
     {
     }
-
     public override void AtaqueNormal(Personagem alvo)
     {
-        int dano = Math.Max(Ataque - alvo.Defesa, 0);
+        int danoBase = Ataque;
+        if (flechasTripla)
+            danoBase += 10;
+        int dano = danoBase - alvo.Defesa;
+        if (dano < 0)
+            dano = 0;
         alvo.ReceberDano(dano);
 
-        Console.WriteLine($"\n{Nome} lançou suas flechas em {alvo.Nome}");
-        Console.WriteLine($"Causou {dano} de dano em seu oponente.");
-        Console.WriteLine($"Vida atual: {Vida} | Ataque atual: {Ataque} | Defesa atual: {Defesa}");
+        Console.WriteLine($"{Nome} (Arqueiro) dispara flechas {(flechasTripla ? "Tripla" : "comum")} em {alvo.Nome}, causando {dano} de dano!");
 
+        flechasTripla = false; 
     }
     public override void AtaqueEspecial(Personagem alvo)
     {
-        int danoTotal = 0;
-
-        Console.WriteLine($"\n{Nome} usou seu poder de TRÊS FLECHAS FLAMEJANTES em {alvo.Nome}!");
-
-        for (int i = 0; i < 3; i++)
-        {
-            int dano = Math.Max((int)(Ataque * 1.2) - alvo.Defesa, 0);
-            alvo.ReceberDano(dano);
-        }
-
-        // Penalidade do especial
-        int defesaAntes = Defesa;
-        Defesa = Math.Max(Defesa - 1, 0);
-
-        Console.WriteLine($"\nDano total causado: {danoTotal}");
-        Console.WriteLine($"{Nome} perdeu 1 ponto de defesa (de {defesaAntes} → {Defesa}).");
-        Console.WriteLine($"Status atual — Vida: {Vida} | Ataque: {Ataque} | Defesa: {Defesa}");
+        flechasTripla = true;
+        Console.WriteLine($"{Nome} prepara suas flechas Triplas! O próximo ataque será mais forte.");
     }
-
     public override void ReceberDano(int dano)
     {
         Vida = Math.Max(Vida - dano, 0);
-
         Console.WriteLine($"{Nome} recebeu {dano} de dano. Vida atual: {Vida}");
     }
-
-    public override void ExibirStatus()
-    {
-        Console.WriteLine("===== STATUS DO Presto =====");
-        Console.WriteLine($"Nome: {Nome}");
-        Console.WriteLine($"Vida: {Vida}");
-        Console.WriteLine($"Ataque: {Ataque}");
-        Console.WriteLine($"Defesa: {Defesa}");
-        Console.WriteLine("================================");
+    public override void ExibirStatus(){
     }
 }

@@ -34,13 +34,14 @@ public abstract class Personagem : IAtacavel
         Console.WriteLine("================================");
     }
 
-    // Método de ataque simples
     public abstract void AtaqueNormal(Personagem alvo);
+
     public abstract void AtaqueEspecial(Personagem alvo);
 
     public virtual void ReceberDano(int dano)
     {
         Vida = Math.Max(Vida - dano, 0);
-    }
 
+        Console.WriteLine($"{Nome} recebeu {dano} de dano. Vida atual: {Vida}");
+    }
 }

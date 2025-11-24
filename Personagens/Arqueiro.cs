@@ -4,9 +4,8 @@ internal class Arqueiro : Personagem
 {
     private bool flechasTripla = false;
 
-    public Arqueiro() : base("Hank", vida: 100, ataque: 5, defesa: 15)
-    {
-    }
+    public Arqueiro() : base("Hank", vida: 100, ataque: 5, defesa: 15){}
+
     public override void AtaqueNormal(Personagem alvo)
     {
         int danoBase = Ataque;
@@ -21,16 +20,14 @@ internal class Arqueiro : Personagem
 
         flechasTripla = false; 
     }
+
     public override void AtaqueEspecial(Personagem alvo)
     {
         flechasTripla = true;
         Console.WriteLine($"{Nome} prepara suas flechas Triplas! O próximo ataque será mais forte.");
     }
-    public override void ReceberDano(int dano)
-    {
-        Vida = Math.Max(Vida - dano, 0);
-        Console.WriteLine($"{Nome} recebeu {dano} de dano. Vida atual: {Vida}");
-    }
-    public override void ExibirStatus(){
-    }
+
+    public override void ReceberDano(int dano){}
+
+    public override void ExibirStatus(){}
 }
